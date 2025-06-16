@@ -1,0 +1,55 @@
+# Node.js and TypeScript specific ignored files
+# ---------------------------------------------
+node_modules/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+.npm/
+.yarn/
+.DS_Store # macOS specific
+Thumbs.db # Windows specific
+
+# Build output directories
+# ------------------------
+dist/
+/server/dist/            # Compiled TypeScript output for the server
+/client/react/dist/      # React build output (often named 'build' or 'dist')
+
+
+# Environment variables
+# ---------------------
+# .env
+# .env.local
+# .env.development.local
+# .env.test.local
+# .env.production.local
+
+# IDE-specific ignored files
+# --------------------------
+.vscode/                 # VSCode settings (only if not shared or contains personal info)
+.idea/                   # IntelliJ/WebStorm IDE files
+*.sublime-project
+*.sublime-workspace
+
+# Local development files
+# -----------------------
+*.sqlite
+*.sqlite3
+/tmp/
+
+# Crashlytics, etc. (for mobile builds if relevant)
+# -------------------------------------------------
+*.apk
+*.ipa
+*.aab
+.expo/
+.yarn-cache/
+.eslintcache
+coverage/
+
+
+public/
+!client/react/public/

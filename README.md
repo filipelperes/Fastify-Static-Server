@@ -1,0 +1,1 @@
+## Não esquecer de criar a pasta "public" na raiz do projeto e colocar todos os arquivos que deseja.
