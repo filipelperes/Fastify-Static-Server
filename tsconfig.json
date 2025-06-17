@@ -1,33 +1,25 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Node LTS (22)",
-  "_version": "22.0.0",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "target": "es2022",
+    "module": "node16",
     "lib": [
       "es2023"
     ],
-    "module": "node16",
-    "target": "es2022",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
     "moduleResolution": "node16",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
     "outDir": "./dist",
-    "rootDir": "./server",
+    "rootDir": "./",
     "types": [
-      "node"
+      "node",
+      "@fastify/http-proxy",
+      "@fastify/static"
     ]
   },
   "include": [
-    "server",
     "./**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }

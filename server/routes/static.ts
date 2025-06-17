@@ -1,25 +1,21 @@
 import { FastifyInstance } from 'fastify';
 import fastifyStatic from '@fastify/static';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { root } from '../utils/paths.js';
+import type { AppRoutesOptions } from '../types/index.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-export function registerStaticRoutes(app: FastifyInstance) {
-   const root = path.resolve(__dirname, '../../');
-
+export function registerStaticRoutes(app: FastifyInstance, opts: AppRoutesOptions, done: () => void) {
    app.register(fastifyStatic, {
       root: path.join(root, 'public'),
       prefix: '/files/',
       decorateReply: false,
-   });
-
-   app.register(fastifyStatic, {
-      root: path.join(root, 'dist/react'),
-      prefix: '/react/',
-      decorateReply: false,
-      index: ['index.html'],
+      setHeaders: (res, filePathFromStatic) => {
+         if (filePathFromStatic.endsWith('.apk')) {
+            const filename = path.basename(filePathFromStatic);
+            res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+            res.setHeader('Content-Type', 'application/vnd.android.package-archive');
+         }
+      }
    });
 
    app.register(fastifyStatic, {
@@ -28,4 +24,10 @@ export function registerStaticRoutes(app: FastifyInstance) {
       decorateReply: false,
       index: ['index.html'],
    });
+
+   done();
+
+   app.log.info(`Static routes registered:`);
+   app.log.info(`  - /files/ serves from: ${path.join(root, 'public')}`);
+   app.log.info(`  - /html/ serves from: ${path.join(root, 'client/html')}`);
 }

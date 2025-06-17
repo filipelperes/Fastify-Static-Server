@@ -29,6 +29,7 @@ dist/
 
 # IDE-specific ignored files
 # --------------------------
+client/*/.vscode/
 .vscode/                 # VSCode settings (only if not shared or contains personal info)
 .idea/                   # IntelliJ/WebStorm IDE files
 *.sublime-project
@@ -52,4 +53,4 @@ coverage/
 
 
 public/
-!client/react/public/
+!client/*/public/

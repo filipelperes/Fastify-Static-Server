@@ -1,16 +1,9 @@
-import { useEffect, useState } from 'react';
 import './App.css';
 import { FileList } from './components/FileList';
+import { useFileData } from './hooks/useFileData';
 
-function App() {
-  const [files, setFiles] = useState<string[]>([]);
-
-  useEffect(() => {
-    fetch('/api/files')
-      .then(res => res.json())
-      .then(setFiles)
-      .catch(err => console.error('Failed to fetch files:', err));
-  }, []);
+const App = () => {
+  const { files } = useFileData();
 
   return (
     <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
@@ -18,6 +11,6 @@ function App() {
       <FileList files={files} />
     </div>
   );
-}
+};
 
 export default App;
