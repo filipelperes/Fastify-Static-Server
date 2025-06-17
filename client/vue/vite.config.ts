@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({
-  plugins: [vue()],
+  plugins: [vue(), tailwindcss()],
   base: mode !== 'development' ? '/vue/' : '',
   server: {
     port: 5172,

@@ -10,5 +10,5 @@ export const useFileData = () => {
          .catch(err => console.error('Failed to fetch files:', err));
    }, []);
 
-   return { files, setFiles };
+   return { files };
 };

@@ -1,6 +1,6 @@
 <template>
-  <div style="padding: 2rem; font-family: sans-serif;">
-    <h1>Available Files</h1>
+  <div style="padding: 2rem; font-family: sans-serif;" class="h-screen w-screen font-inter flex flex-col justify-center items-center bg-stone-700 text-neutral-50">
+    <h1 class="capitalize tracking-wider !text-7xl">Available Files</h1>
     <FileList :files="files" />
   </div>
 </template>

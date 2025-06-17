@@ -1,7 +1,7 @@
 <template>
-  <ul>
-    <li v-for="file in files" :key="file">
-      <a :href="`/files/${file}`" download>{{ file }}</a>
+  <ul class="list-none mt-6">
+    <li class="text-cyan-600 hover:text-sky-800 text-2xl" v-for="file in files" :key="file">
+      <a class="!no-underline !text-inherit" :href="`/files/${file}`" download>{{ file }}</a>
     </li>
   </ul>
 </template>

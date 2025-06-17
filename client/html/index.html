@@ -4,18 +4,19 @@
 <head>
    <meta charset="UTF-8" />
    <title>File Server</title>
-   <style>
-      body {
-         font-family: sans-serif;
-         padding: 2rem;
-      }
-   </style>
+   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet">
+   <link rel="stylesheet" href="./style.css">
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body>
-   <h1>Available APK Files</h1>
-   <ul id="file-list"></ul>
+<body class="h-screen w-screen font-inter flex flex-col justify-center items-center bg-stone-700 text-neutral-50">
+   <h1 class="capitalize tracking-wider !text-7xl">Available Files</h1>
+   <ul class="list-none mt-6" id="file-list"></ul>
 
    <script>
       fetch('/api/files')
@@ -24,10 +25,14 @@
             const list = document.getElementById('file-list');
             files.forEach(file => {
                const li = document.createElement('li');
+               li.className = "text-cyan-600 hover:text-sky-800 text-2xl";
+
                const a = document.createElement('a');
                a.href = `/files/${file}`;
                a.textContent = file;
                a.download = true;
+               a.className = "!no-underline !text-inherit";
+
                li.appendChild(a);
                list.appendChild(li);
             });
