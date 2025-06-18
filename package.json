@@ -1,7 +1,7 @@
 {
   "name": "staticwebserver",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project provides a simple static file server designed to demonstrate serving various frontend applications and static content. It features three distinct frontend options: **HTML**, **React**, and **Vue**.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,12 +11,10 @@
     "dev:server": "cross-env NODE_ENV=development tsx watch server/server.ts",
     "dev:react": "npm --prefix client/react run dev",
     "dev:vue": "npm --prefix client/vue run dev",
-    "dev:html": "npm --prefix client/html run dev",
     "build": "npm run build:vue && npm run build:react",
     "build:server": "tsc -p server/tsconfig.json",
     "build:react": "npm --prefix client/react run build",
-    "build:vue": "npm --prefix client/vue run build",
-    "build:html": "npm --prefix client/html run build"
+    "build:vue": "npm --prefix client/vue run build"
   },
   "keywords": [],
   "author": "",
@@ -38,5 +36,13 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filipelperes/Fastify-Static-Server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/filipelperes/Fastify-Static-Server/issues"
+  },
+  "homepage": "https://github.com/filipelperes/Fastify-Static-Server#readme"
 }

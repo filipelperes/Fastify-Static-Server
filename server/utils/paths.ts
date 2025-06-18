@@ -3,4 +3,9 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-export const root = path.resolve(__dirname, '../../');
+const root = path.resolve(__dirname, '../../');
+
+export const publicPath = path.join(root, 'public');
+export const htmlPath = path.join(root, 'client/html');
+export const reactDistPath = path.join(root, 'dist/react');
+export const vueDistPath = path.join(root, 'dist/vue');

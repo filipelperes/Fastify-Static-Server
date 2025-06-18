@@ -1,33 +1,44 @@
 import { FastifyInstance } from 'fastify';
 import fastifyStatic from '@fastify/static';
 import path from 'path';
-import { root } from '../utils/paths.js';
-import type { AppRoutesOptions } from '../types/index.js';
+import { htmlPath, publicPath, reactDistPath, vueDistPath } from '../utils/paths.js';
 
-export function registerStaticRoutes(app: FastifyInstance, opts: AppRoutesOptions, done: () => void) {
+export function registerStaticRoutes(app: FastifyInstance) {
    app.register(fastifyStatic, {
-      root: path.join(root, 'public'),
+      root: publicPath,
       prefix: '/files/',
       decorateReply: false,
       setHeaders: (res, filePathFromStatic) => {
-         if (filePathFromStatic.endsWith('.apk')) {
-            const filename = path.basename(filePathFromStatic);
-            res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-            res.setHeader('Content-Type', 'application/vnd.android.package-archive');
-         }
+         res.setHeader('Content-Disposition', `attachment; filename="${path.basename(filePathFromStatic)}"`);
       }
    });
 
    app.register(fastifyStatic, {
-      root: path.join(root, 'client/html'),
+      root: htmlPath,
       prefix: '/html/',
       decorateReply: false,
       index: ['index.html'],
    });
 
-   done();
+   app.register(fastifyStatic, {
+      root: reactDistPath,
+      prefix: '/react/',
+      decorateReply: false,
+      wildcard: true,
+      index: ['index.html'],
+   });
+
+   app.register(fastifyStatic, {
+      root: vueDistPath,
+      prefix: '/vue/',
+      decorateReply: false,
+      wildcard: true,
+      index: ['index.html'],
+   });
 
    app.log.info(`Static routes registered:`);
-   app.log.info(`  - /files/ serves from: ${path.join(root, 'public')}`);
-   app.log.info(`  - /html/ serves from: ${path.join(root, 'client/html')}`);
+   app.log.info(`  - /files/ serves from: ${publicPath}`);
+   app.log.info(`  - /html/ serves from: ${htmlPath}`);
+   app.log.info(`- /react/ serves from: ${reactDistPath}`);
+   app.log.info(`- /vue/ serves from: ${vueDistPath}`);
 }

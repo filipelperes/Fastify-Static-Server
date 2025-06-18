@@ -4,11 +4,17 @@ import { getLocalIP } from "./utils/getLocalIP.js";
 import { registerStaticRoutes } from "./routes/static.js";
 import { registerApiRoutes } from "./routes/api.js";
 import fastifyCors from '@fastify/cors';
-import { registerReactAppRoutes } from './routes/reactApp.js';
-import { registerVueAppRoutes } from './routes/vueApp.js';
 
 const PORT = parseInt(process.env.PORT || '3333', 10);
 const isDevelopment = process.env.NODE_ENV !== 'production';
+const ip = getLocalIP();
+const log = `Server running at:
+   > REACT: http://${ip}:${PORT}/react/
+   > VUE: http://${ip}:${PORT}/vue/
+   > HTML: http://${ip}:${PORT}/html/
+   > Files: http://${ip}:${PORT}/files/
+   > API: http://${ip}:${PORT}/api/files
+`;
 
 const app = fastify({ logger: true });
 
@@ -24,10 +30,8 @@ app.register(fastifyCors, {
    credentials: true
 });
 
-app.register(registerApiRoutes, { prefix: '/api', isDevelopment });
-app.register(registerStaticRoutes, { isDevelopment });
-app.register(registerVueAppRoutes, { prefix: '/vue', isDevelopment });
-app.register(registerReactAppRoutes, { prefix: '/react', isDevelopment });
+registerApiRoutes(app);
+registerStaticRoutes(app);
 
 app
    .listen({
@@ -35,21 +39,8 @@ app
       port: PORT
    })
    .then(() => {
-      const ip = getLocalIP();
-      console.log(`Server running at:
-         → REACT: http://${ip}:${PORT}/react/
-         → VUE: http://${ip}:${PORT}/vue/
-         → HTML: http://${ip}:${PORT}/html/
-         → Files: http://${ip}:${PORT}/files/
-         → API: http://${ip}:${PORT}/api/files
-      `);
-      app.log.info(`Server running at:
-         → REACT: http://${ip}:${PORT}/react/
-         → VUE: http://${ip}:${PORT}/vue/
-         → HTML: http://${ip}:${PORT}/html/
-         → Files: http://${ip}:${PORT}/files/
-         → API: http://${ip}:${PORT}/api/files
-      `);
+      console.log(log);
+      app.log.info(log);
    })
    .catch(err => {
       app.log.error(err);
