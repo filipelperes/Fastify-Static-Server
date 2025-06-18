@@ -14,6 +14,7 @@ Thumbs.db # Windows specific
 
 # Build output directories
 # ------------------------
+dist/
 /server/dist/            # Compiled TypeScript output for the server
 /client/react/dist/      # React build output (often named 'build' or 'dist')
 
@@ -50,7 +51,5 @@ client/*/.vscode/
 .eslintcache
 coverage/
 
-
 public/
 !client/*/public/
-!dist/
