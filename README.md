@@ -29,7 +29,7 @@ This project supports both **development** and **production** modes, allowing yo
 
 ### Development Mode
 
-For development, use the following `npm` scripts to start the server and the respective frontend development servers. Note that in development, React (Vite) runs on port **5173**, Vue (Vite) on port **5172** and HTML (Vite) runs on port **5171**. The main server will typically run on a different port (e.g., **3333** as a default for production, but it's dynamic in dev).
+For development, use the following `npm` scripts to start the server and the respective frontend development servers. Note that in development, React (Vite) runs on port **5173**, Vue (Vite) on port **5172**, and HTML (Vite) runs on port **5171**. The main server will typically run on a different port (e.g., **3333** as a default for production, but it's dynamic in dev).
 
 * **`npm run dev`**: Starts the server, HTML, React and Vue development servers concurrently.
 * **`npm run dev:sr`**: Starts the server and React development server concurrently.
@@ -73,10 +73,10 @@ After building your frontend applications, you can start the server in productio
 
    *Important:* If you skip this step, your frontend applications will not be available when running the server in production, as the production server serves files from the dist directory, which contains the compiled and built versions of your applications.
 
-**2.Start the Server**
-   After building your frontend applications and compiling the server, you can start the server in production mode. By default, the production server runs on port 3333.
+**2. Start the Server**
+   After building your frontend applications and compiling the server, you can start the server in production mode. By default, the production server runs on port **3333**.
 
-   Once the server is running (either in development or production), you can access the different frontends and static files at the following URLs:
+   Once the server is running (either in development or production mode), you can access the different frontends and static files at the following URLs:
 
    * **React**: `http://<YOUR_IP_ADDRESS>:<PORT>/react/`
    * **Vue**: `http://<YOUR_IP_ADDRESS>:<PORT>/vue/`
@@ -84,4 +84,4 @@ After building your frontend applications, you can start the server in productio
    * **Files**: `http://<YOUR_IP_ADDRESS>:<PORT>/files/`
    * **API**: `http://<YOUR_IP_ADDRESS>:<PORT>/api/files`
 
-**Note:** `<YOUR_IP_ADDRESS>` can be `localhost` (127.0.0.1) or your local area network (LAN) IP address. `<PORT>` will be the port your server is configured to run on (e.g., **3333** in production, or a dynamic port in development for the main server, while React, Vue, HTML development servers use **5173, 5172, 5171** respectively).
+**Note:** `<YOUR_IP_ADDRESS>` can be `localhost` (127.0.0.1) or your local area network (LAN) IP address. `<PORT>` will be the port your server is configured to run on (e.g., **3333** in production, or a dynamic port in development for the main server, while the React, Vue, HTML development servers use **5173, 5172, 5171** respectively).
