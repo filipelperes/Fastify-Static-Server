@@ -5,16 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:react\" \"npm run dev:vue\"",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:react\" \"npm run dev:vue\" \"npm run dev:html\"",
     "dev:sr": "concurrently \"npm run dev:server\" \"npm run dev:react\"",
     "dev:sv": "concurrently \"npm run dev:server\" \"npm run dev:vue\"",
+    "dev:sh": "concurrently \"npm run dev:server\" \"npm run dev:html\"",
     "dev:server": "cross-env NODE_ENV=development tsx watch server/server.ts",
     "dev:react": "npm --prefix client/react run dev",
     "dev:vue": "npm --prefix client/vue run dev",
-    "build": "npm run build:vue && npm run build:react",
+    "dev:html": "npm --prefix client/html run dev",
+    "build": "npm run build:vue && npm run build:react && npm run build:html",
     "build:server": "tsc -p server/tsconfig.json",
     "build:react": "npm --prefix client/react run build",
-    "build:vue": "npm --prefix client/vue run build"
+    "build:vue": "npm --prefix client/vue run build",
+    "build:html": "npm --prefix client/html run build"
   },
   "keywords": [],
   "author": "",

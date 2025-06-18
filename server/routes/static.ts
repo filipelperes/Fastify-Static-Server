@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify';
 import fastifyStatic from '@fastify/static';
 import path from 'path';
-import { htmlPath, publicPath, reactDistPath, vueDistPath } from '../utils/paths.js';
+import { htmlDistPath, publicPath, reactDistPath, vueDistPath } from '../utils/paths.js';
 
 export function registerStaticRoutes(app: FastifyInstance) {
    app.register(fastifyStatic, {
@@ -14,9 +14,10 @@ export function registerStaticRoutes(app: FastifyInstance) {
    });
 
    app.register(fastifyStatic, {
-      root: htmlPath,
+      root: htmlDistPath,
       prefix: '/html/',
       decorateReply: false,
+      wildcard: true,
       index: ['index.html'],
    });
 
@@ -38,7 +39,7 @@ export function registerStaticRoutes(app: FastifyInstance) {
 
    app.log.info(`Static routes registered:`);
    app.log.info(`  - /files/ serves from: ${publicPath}`);
-   app.log.info(`  - /html/ serves from: ${htmlPath}`);
+   app.log.info(`  - /html/ serves from: ${htmlDistPath}`);
    app.log.info(`- /react/ serves from: ${reactDistPath}`);
    app.log.info(`- /vue/ serves from: ${vueDistPath}`);
 }

@@ -1,7 +1,7 @@
 <template>
-  <ul class="list-none mt-6">
-    <li class="text-cyan-600 hover:text-sky-800 text-2xl" v-for="file in files" :key="file">
-      <a class="!no-underline !text-inherit" :href="`/files/${file}`" download>{{ file }}</a>
+  <ul class="!my-9 min-h-28 max-h-[55vh] overflow-x-hidden overflow-y-auto w-1/2 border border-neutral-50 rounded-xl">
+    <li class="text-sky-400 hover:text-sky-800 text-2xl text-center !py-2" v-for="file in files" :key="file">
+      <a :href="`/files/${file}`" download>{{ file }}</a>
     </li>
   </ul>
 </template>

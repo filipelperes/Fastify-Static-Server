@@ -1,26 +1,38 @@
 <template>
-  <div style="padding: 2rem; font-family: sans-serif;" class="h-screen w-screen font-inter flex flex-col justify-center items-center bg-stone-700 text-neutral-50">
-    <h1 class="capitalize tracking-wider !text-7xl">Available Files</h1>
+  <div class="h-screen w-screen font-inter flex flex-col justify-center items-center bg-stone-700 text-neutral-50">
+    <h1 class="capitalize tracking-wider text-7xl">Available Files</h1>
     <FileList :files="files" />
+    <button
+      @click="getFiles"
+      :disabled="loading"
+      :class="[
+        'transition duration-300',
+        loading ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'
+      ]"
+      :title="loading ? 'Refreshing...' : 'Refresh Files'"
+      :aria-label="loading ? 'Refreshing files' : 'Refresh files'"
+    >
+      <RefreshIcon :class="{ 'animate-spin': loading }" />
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue' ;
+declare const alert: (message?: string) => void;
+import { watch } from 'vue' ;
 import FileList from '@/vue/components/FileList.vue';
+import RefreshIcon from '@/vue/components/RefreshIcon.vue';
 import { useFileData } from '@/vue/composables/useFileData';
-const { files } = useFileData();
 
-onMounted(async () => {
-  try {
-    const res = await fetch('/api/files');
-    files.value = await res.json() as string[];
-  } catch (err) {
-    console.error('Failed to fetch files:', err);
+const { files, loading, error, getFiles } = useFileData();
+
+watch(error, (newError) => {
+  if (newError) {
+    alert(`Failed to fetch files: ${newError}`);
   }
-})
+});
 </script>
 
-<style scoped>
+<!-- <style scoped>
 /* Pode manter o App.css como global, ou usar aqui */
-</style>
+</style> -->
